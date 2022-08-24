@@ -3,7 +3,7 @@ import uniqBy from "lodash/uniqBy";
 import { createSlice } from "@reduxjs/toolkit";
 // utils
 import axios from "../../utils/axios";
-import { InvoiceState } from "../../@types/invoice";
+import { Invoice, InvoiceState } from "../../@types/invoice";
 //
 import { dispatch } from "../store";
 
@@ -12,7 +12,7 @@ import { dispatch } from "../store";
 const initialState: InvoiceState = {
   isLoading: false,
   error: null,
-  invoice: null,
+  invoicePDF: null,
 };
 
 const slice = createSlice({
@@ -33,7 +33,7 @@ const slice = createSlice({
     // GET INVOICE
     getInvoiceSuccess(state, action) {
       state.isLoading = false;
-      state.invoice = action.payload;
+      state.invoicePDF = action.payload;
     },
   },
 });
@@ -43,12 +43,24 @@ export default slice.reducer;
 
 // ----------------------------------------------------------------------
 
-export function getInvoice() {
+export function getInvoice(invoice: Invoice) {
   return async () => {
-    dispatch(slice.actions.startLoading());
+    // dispatch(slice.actions.startLoading());
     try {
-      const response = await axios.post("/api/invoice", {});
-      dispatch(slice.actions.getInvoiceSuccess(response.data));
+      const response = await axios.post(`/api/invoice`, invoice, {
+        responseType: "blob", // had to add this one here
+      });
+
+      // create temp download url
+      const url = window.URL.createObjectURL(response.data);
+
+      // open pdf file on new tab
+      window.open(url, "__blank");
+
+      // remove temp url
+      window.URL.revokeObjectURL(url);
+
+      // dispatch(slice.actions.getInvoiceSuccess(response.data));
     } catch (error) {
       dispatch(slice.actions.hasError(error));
     }

@@ -23,12 +23,14 @@ import {
   Divider,
   IconButton,
 } from "@mui/material";
-
+// redux
+import { useDispatch } from '../../redux/store';
+import { getInvoice } from '../../redux/slices/invoice';
 // components
 import { UploadAvatar } from "../../components/upload";
 import { MotionViewport } from "../../components/animate";
 //
-import { InvoiceFormValues } from "../../@types/invoice";
+import { Invoice, InvoiceFormValues } from "../../@types/invoice";
 import Iconify from "src/components/Iconify";
 
 // ----------------------------------------------------------------------
@@ -68,6 +70,7 @@ const RootStyle = styled("div")(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function HomeInvoice() {
+  const dispatch = useDispatch();
   const [photoURL, setPhotoURL] = useState(null);
 
   const validationSchema = Yup.object().shape({
@@ -113,7 +116,28 @@ export default function HomeInvoice() {
     },
     validationSchema,
     onSubmit: async (values) => {
-      console.log(values);
+      const invoice: Invoice = {
+        logo: values.logo,
+        dateHeaders: values.dateHeaders,
+        no: values.no,
+        date: new Date(values.date),
+        dueDate: new Date(values.dueDate),
+        itemsHeaders: values.itemsHeaders,
+        items: values.items,
+        amountHeaders: values.amountHeaders,
+        subtotal: +calculateSubtotal(),
+        tax: +values.tax || 0,
+        discount: +values.discount || 0,
+        total: +calculateTotal(),
+        notes: values.notes,
+        yourCompany: {
+          ...values.yourCompany,
+          phone: +values.yourCompany.phone,
+        },
+        clientCompany: values.clientCompany,
+      };
+      dispatch(getInvoice(invoice))
+      // console.log(invoice);
     },
   });
 

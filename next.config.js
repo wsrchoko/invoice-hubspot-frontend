@@ -7,4 +7,7 @@ module.exports = withPWA({
     dest: 'public',
     runtimeCaching,
   },
+  env: {
+    HOST_API_KEY: 'http://localhost:3000',
+  }
 })
