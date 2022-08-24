@@ -88,6 +88,7 @@ export default function HomeFAQs() {
             <AccordionDetails>
               <Typography
                 variant="body1"
+                component="span"
                 color={(theme) => theme.palette.grey[700]}
               >
                 An invoice, or sales invoices, is a billing document issued by a
@@ -164,6 +165,7 @@ export default function HomeFAQs() {
             <AccordionDetails>
               <Typography
                 variant="body1"
+                component="span"
                 color={(theme) => theme.palette.grey[700]}
               >
                 <ol style={{ listStylePosition: "inside" }}>
@@ -208,6 +210,7 @@ export default function HomeFAQs() {
             <AccordionDetails>
               <Typography
                 variant="body1"
+                component="span"
                 color={(theme) => theme.palette.grey[700]}
               >
                 When it comes to actually sending your invoice off to the
@@ -286,6 +289,7 @@ export default function HomeFAQs() {
             <AccordionDetails>
               <Typography
                 variant="body1"
+                component="span"
                 color={(theme) => theme.palette.grey[700]}
               >
                 <ol style={{ listStylePosition: "inside" }}>
