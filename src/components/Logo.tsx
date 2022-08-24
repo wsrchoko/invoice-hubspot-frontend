@@ -6,7 +6,7 @@ import { Box, BoxProps } from "@mui/material";
 // ----------------------------------------------------------------------
 
 interface Props extends BoxProps {
-  type?: "full" | "single";
+  type?: "full" | "single" | "full_white";
   disabledLink?: boolean;
 }
 

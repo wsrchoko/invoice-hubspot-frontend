@@ -1,42 +1,86 @@
 // next
-import NextLink from 'next/link';
+import NextLink from "next/link";
 // @mui
-import { styled } from '@mui/material/styles';
-import { Grid, Link, Divider, Container, Typography, Stack } from '@mui/material';
+import { styled } from "@mui/material/styles";
+import {
+  Grid,
+  Link,
+  Divider,
+  Container,
+  Typography,
+  Stack,
+} from "@mui/material";
 // components
-import Logo from '../../components/Logo';
-import SocialsButton from '../../components/SocialsButton';
+import Logo from "../../components/Logo";
+import SocialsButton from "../../components/SocialsButton";
 
 // ----------------------------------------------------------------------
 
 const LINKS = [
   {
-    headline: 'Hubspot',
+    headline: "Popular Features",
     children: [
-      { name: 'About us', href: '#' },
-      { name: 'Contact us', href: '#' },
-      { name: 'FAQs', href: '#' },
+      { name: "Free Meeting Scheduler App", href: "#" },
+      { name: "Social Media Tools", href: "#" },
+      { name: "Email Tracking Software", href: "#" },
+      { name: "Sales Email Automation", href: "#" },
+      { name: "Ads Software", href: "#" },
+      { name: "Email Marketing Software", href: "#" },
+      { name: "Lead Management Software", href: "#" },
+      { name: "Pipeline Management Tools", href: "#" },
     ],
   },
   {
-    headline: 'Legal',
+    headline: "",
     children: [
-      { name: 'Terms and Condition', href: '#' },
-      { name: 'Privacy Policy', href: '#' },
+      { name: "Sales Email Templates", href: "#" },
+      { name: "Help Desk Software", href: "#" },
+      { name: "Free Online Form Builder", href: "#" },
+      { name: "Free Chatbot Builder", href: "#" },
+      { name: "Free Live Chat Software", href: "#" },
+      { name: "Marketing Analytics", href: "#" },
+      { name: "Free Landing Page Builder", href: "#" },
     ],
   },
   {
-    headline: 'Contact',
+    headline: "Free Tools",
     children: [
-      { name: 'support@hubspot.com', href: '#' },
-      { name: 'Los Angeles, 359  Hidden Valley Road', href: '#' },
+      { name: "Website Grader", href: "#" },
+      { name: "Make My Persona", href: "#" },
+      { name: "Email Signature Generator", href: "#" },
+      { name: "Blog Ideas Generator", href: "#" },
+      { name: "Invoice Template Generator", href: "#" },
+      { name: "Marketing Plan Generator", href: "#" },
+      { name: "Free Business Templates", href: "#" },
+      { name: "Industry Benchmark Data", href: "#" },
+      { name: "Software Comparisons Library", href: "#" },
+      { name: "Website Themes & Templates", href: "#" },
+    ],
+  },
+  {
+    headline: "Company",
+    children: [
+      { name: "About Us", href: "#" },
+      { name: "Careers", href: "#" },
+      { name: "Management Team", href: "#" },
+      { name: "Board of Directors", href: "#" },
+      { name: "Investor Relations", href: "#" },
+      { name: "Blog", href: "#" },
+      { name: "Contact Us", href: "#" },
+    ],
+  },
+  {
+    headline: "Customers",
+    children: [
+      { name: "Customer Support", href: "#" },
+      { name: "Join a Local User Group", href: "#" },
     ],
   },
 ];
 
-const RootStyle = styled('div')(({ theme }) => ({
-  position: 'relative',
-  backgroundColor: theme.palette.background.default,
+const RootStyle = styled("div")(({ theme }) => ({
+  position: "relative",
+  backgroundColor: "#213343",
 }));
 
 // ----------------------------------------------------------------------
@@ -44,40 +88,34 @@ const RootStyle = styled('div')(({ theme }) => ({
 export default function MainFooter() {
   return (
     <RootStyle>
-      <Divider />
-      <Container sx={{ pt: 10 }}>
+      <Container sx={{ py: 10 }}>
         <Grid
           container
-          justifyContent={{ xs: 'center', md: 'space-between' }}
-          sx={{ textAlign: { xs: 'center', md: 'left' } }}
+          justifyContent={{ xs: "center", md: "space-between" }}
+          sx={{ textAlign: { xs: "center", md: "left" } }}
         >
-          <Grid item xs={12} sx={{ mb: 3 }}>
-            <Logo sx={{ mx: { xs: 'auto', md: 'inherit' } }} />
-          </Grid>
-          <Grid item xs={8} md={3}>
-            <Stack
-              direction="row"
-              justifyContent={{ xs: 'center', md: 'flex-start' }}
-              sx={{ mt: 5, mb: { xs: 5, md: 0 } }}
-            >
-              <SocialsButton sx={{ mx: 0.5 }} />
-            </Stack>
-          </Grid>
-
-          <Grid item xs={12} md={7}>
+          <Grid item xs={12}>
             <Stack
               spacing={5}
-              direction={{ xs: 'column', md: 'row' }}
+              direction={{ xs: "column", md: "row" }}
               justifyContent="space-between"
             >
               {LINKS.map((list) => (
                 <Stack key={list.headline} spacing={2}>
-                  <Typography component="p" variant="overline">
+                  <Typography
+                    component="h2"
+                    variant="subtitle2"
+                    color={(theme) => theme.palette.common.white}
+                  >
                     {list.headline}
                   </Typography>
                   {list.children.map((link) => (
                     <NextLink key={link.name} href={link.href} passHref>
-                      <Link color="inherit" variant="body2" sx={{ display: 'block' }}>
+                      <Link
+                        color="#b6c7d6"
+                        variant="body2"
+                        sx={{ display: "block" }}
+                      >
                         {link.name}
                       </Link>
                     </NextLink>
@@ -88,18 +126,26 @@ export default function MainFooter() {
           </Grid>
         </Grid>
 
-        <Typography
-          component="p"
-          variant="body2"
-          sx={{
-            mt: 10,
-            pb: 5,
-            fontSize: 13,
-            textAlign: { xs: 'center', md: 'left' },
-          }}
-        >
-          © 2021. All rights reserved
-        </Typography>
+        <Grid container>
+          <Grid item xs={12}>
+            <Stack direction="row" justifyContent="center" sx={{ mt: 3 }}>
+              <SocialsButton />
+            </Stack>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Stack sx={{ mt: 3 }} alignItems="center" spacing={1}>
+              <Logo
+                type="full_white"
+                sx={{ mx: { xs: "auto", md: "inherit" } }}
+              />
+
+              <Typography variant="caption" fontWeight="bold" color="#b6c7d6">
+                Copyright © 2022 HubSpot, Inc.
+              </Typography>
+            </Stack>
+          </Grid>
+        </Grid>
       </Container>
     </RootStyle>
   );

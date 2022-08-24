@@ -34,6 +34,8 @@ export default function HomePage() {
         <ContentStyle>
           <HomeStart />
 
+          {/* PDF */}
+
           <HomeHowToUse />
 
           <HomeFAQs />
