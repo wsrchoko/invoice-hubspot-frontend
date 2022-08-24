@@ -23,9 +23,10 @@ import {
   Divider,
   IconButton,
 } from "@mui/material";
+import LoadingButton from "@mui/lab/LoadingButton";
 // redux
-import { useDispatch } from "../../redux/store";
 import { getInvoice } from "../../redux/slices/invoice";
+import { useDispatch, useSelector, RootState } from "../../redux/store";
 // components
 import { UploadAvatar } from "../../components/upload";
 import { MotionViewport } from "../../components/animate";
@@ -72,6 +73,8 @@ const RootStyle = styled("div")(({ theme }) => ({
 export default function HomeInvoice() {
   const dispatch = useDispatch();
   const [photoURL, setPhotoURL] = useState(null);
+
+  const { isLoading } = useSelector((state: RootState) => state.invoice);
 
   const validationSchema = Yup.object().shape({
     yourCompany: Yup.object({
@@ -698,13 +701,14 @@ export default function HomeInvoice() {
           sx={{ mx: "auto", width: "100%", maxWidth: 800, pt: 3 }}
           textAlign="right"
         >
-          <Button
+          <LoadingButton
+            loading={isLoading}
             variant="contained"
             size="large"
             onClick={() => handleSubmit()}
           >
             Download Now
-          </Button>
+          </LoadingButton>
         </Box>
       </Container>
     </RootStyle>

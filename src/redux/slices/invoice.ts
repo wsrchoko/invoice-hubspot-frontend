@@ -45,7 +45,7 @@ export default slice.reducer;
 
 export function getInvoice(invoice: Invoice) {
   return async () => {
-    // dispatch(slice.actions.startLoading());
+    dispatch(slice.actions.startLoading());
     try {
       const response = await axios.post(`/api/invoice`, invoice, {
         responseType: "blob", // had to add this one here
@@ -60,7 +60,7 @@ export function getInvoice(invoice: Invoice) {
       // remove temp url
       window.URL.revokeObjectURL(url);
 
-      // dispatch(slice.actions.getInvoiceSuccess(response.data));
+      dispatch(slice.actions.getInvoiceSuccess(response.data));
     } catch (error) {
       dispatch(slice.actions.hasError(error));
     }
