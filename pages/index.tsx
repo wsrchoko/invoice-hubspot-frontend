@@ -5,7 +5,12 @@ import Layout from "../src/layouts";
 // components
 import Page from "../src/components/Page";
 // sections
-import { HomeFAQs, HomeStart, HomeHowToUse } from "../src/sections/home";
+import {
+  HomeFAQs,
+  HomeStart,
+  HomeInvoice,
+  HomeHowToUse,
+} from "../src/sections/home";
 
 // ----------------------------------------------------------------------
 
@@ -34,7 +39,7 @@ export default function HomePage() {
         <ContentStyle>
           <HomeStart />
 
-          {/* PDF */}
+          <HomeInvoice />
 
           <HomeHowToUse />
 
