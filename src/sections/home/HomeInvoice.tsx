@@ -31,7 +31,7 @@ import { UploadAvatar } from "../../components/upload";
 import { MotionViewport } from "../../components/animate";
 //
 import { Invoice, InvoiceFormValues } from "../../@types/invoice";
-import Iconify from "src/components/Iconify";
+import Iconify from "../../components/Iconify";
 
 // ----------------------------------------------------------------------
 
