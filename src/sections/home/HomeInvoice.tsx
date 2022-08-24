@@ -24,8 +24,8 @@ import {
   IconButton,
 } from "@mui/material";
 // redux
-import { useDispatch } from '../../redux/store';
-import { getInvoice } from '../../redux/slices/invoice';
+import { useDispatch } from "../../redux/store";
+import { getInvoice } from "../../redux/slices/invoice";
 // components
 import { UploadAvatar } from "../../components/upload";
 import { MotionViewport } from "../../components/animate";
@@ -136,7 +136,7 @@ export default function HomeInvoice() {
         },
         clientCompany: values.clientCompany,
       };
-      dispatch(getInvoice(invoice))
+      dispatch(getInvoice(invoice));
       // console.log(invoice);
     },
   });
@@ -170,12 +170,14 @@ export default function HomeInvoice() {
 
   const calculateSubtotal = () => {
     const subtotal = reduce(
-      compact(values.items.map(({ cell4 }) => +cell4)),
+      compact(
+        values.items.map(({ cell3, cell4 }) => (+cell3 || 0) * (+cell4 || 0))
+      ),
       (acc, a) => acc + a,
       0
     );
     if (subtotal) return subtotal.toFixed(2).toString();
-    return "00.0";
+    return "0.00";
   };
 
   const calculateTotal = () => {
@@ -184,7 +186,7 @@ export default function HomeInvoice() {
     const tax = ((+values.tax || 0) / 100) * subtotal;
     const discount = ((+values.discount || 0) / 100) * (subtotal + tax);
     if (subtotal) return (subtotal + tax - discount).toFixed(2).toString();
-    return "00.0";
+    return "0.00";
   };
 
   const onAddMore = () => {
