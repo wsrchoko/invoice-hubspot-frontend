@@ -8,8 +8,8 @@ export interface Invoice {
   logo: string;
   dateHeaders: string[];
   no: string;
-  date: Date;
-  dueDate: Date;
+  date?: Date;
+  dueDate?: Date;
   itemsHeaders: string[];
   items: Item[];
   amountHeaders: string[];
