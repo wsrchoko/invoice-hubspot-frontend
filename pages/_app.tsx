@@ -14,9 +14,8 @@ import Head from "next/head";
 import App, { AppProps, AppContext } from "next/app";
 //
 import { Provider as ReduxProvider } from "react-redux";
-import { PersistGate } from "redux-persist/lib/integration/react";
 // redux
-import { store, persistor } from "../src/redux/store";
+import { store } from "../src/redux/store";
 // utils
 import { getSettings } from "../src/utils/settings";
 import { SettingsValueProps } from "../src/components/settings/type";
@@ -76,16 +75,14 @@ export default function MyApp(props: MyAppProps) {
       </Head>
 
       <ReduxProvider store={store}>
-        <PersistGate persistor={persistor}>
-          <SettingsProvider defaultSettings={settings}>
-            <ThemeProvider>
-              <MotionLazyContainer>
-                <GlobalStyles />
-                {getLayout(<Component {...pageProps} />)}
-              </MotionLazyContainer>
-            </ThemeProvider>
-          </SettingsProvider>
-        </PersistGate>
+        <SettingsProvider defaultSettings={settings}>
+          <ThemeProvider>
+            <MotionLazyContainer>
+              <GlobalStyles />
+              {getLayout(<Component {...pageProps} />)}
+            </MotionLazyContainer>
+          </ThemeProvider>
+        </SettingsProvider>
       </ReduxProvider>
     </>
   );
